@@ -1,0 +1,2306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOMODACHI & Milkky Berry - Importaciones & Casillero Coreano 🌸</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Fredoka & Quicksand -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #FAF6EE;
+      --card-bg: #FFFFFF;
+      --primary-pink: #F8C3D2;
+      --accent-pink: #E88BA7;
+      --soft-pink-bg: #FFF0F5;
+      --pastel-green: #97B69C;
+      --dark-green: #37533E;
+      --pastel-purple: #D7C7F4;
+      --pastel-blue: #B2DAFA;
+      --pastel-yellow: #FFF2B2;
+      --text-dark: #333333;
+      --border-color: #E2D9C8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding-bottom: 20px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Layout Adaptable */
+    .app-container {
+      width: 100%;
+      max-width: 960px;
+      background-color: var(--bg-color);
+      min-height: 100vh;
+      position: relative;
+      padding-top: 100px;
+      padding-bottom: 95px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.06);
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 640px) {
+      .app-container {
+        max-width: 480px;
+      }
+    }
+
+    /* Barra Superior para Selector de Rol / Auth Bar */
+    .role-switcher-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      max-width: 960px;
+      background-color: var(--dark-green);
+      color: white;
+      padding: 6px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 105;
+    }
+
+    @media (max-width: 640px) {
+      .role-switcher-bar { max-width: 480px; }
+    }
+
+    .role-toggle-btn {
+      background: var(--primary-pink);
+      color: var(--dark-green);
+      border: none;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .role-toggle-btn:hover { background: #ffffff; }
+
+    /* Header Superior Fijo */
+    .header {
+      position: fixed;
+      top: 29px;
+      width: 100%;
+      max-width: 960px;
+      background-color: var(--bg-color);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #EAE0D0;
+      z-index: 100;
+    }
+
+    @media (max-width: 640px) {
+      .header { max-width: 480px; }
+    }
+
+    .brand-pill {
+      background-color: var(--card-bg);
+      border: 2px solid var(--pastel-green);
+      border-radius: 20px;
+      padding: 5px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      color: var(--dark-green);
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-btn {
+      background: var(--card-bg);
+      border: 2px solid var(--pastel-green);
+      border-radius: 16px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--dark-green);
+      cursor: pointer;
+    }
+
+    .icon-btn {
+      background: var(--card-bg);
+      border: 2px solid var(--pastel-green);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      font-size: 16px;
+    }
+
+    .badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background-color: var(--accent-pink);
+      color: white;
+      font-size: 10px;
+      border-radius: 10px;
+      padding: 2px 5px;
+      font-weight: bold;
+    }
+
+    .user-avatar {
+      background: var(--card-bg);
+      border: 2px solid var(--pastel-green);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      color: var(--dark-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    /* Estilos Generales de Pantallas */
+    .screen-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .screen-main-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 28px;
+      color: #2B2B2B;
+    }
+
+    .back-arrow-icon {
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 10px;
+      user-select: none;
+      color: #333;
+    }
+
+    .search-input-pink {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid #F3E5F5;
+      background-color: var(--soft-pink-bg);
+      font-size: 13px;
+      outline: none;
+      margin-bottom: 16px;
+    }
+
+    .pink-card-item {
+      background: #FFF5F7;
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .pink-card-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(232, 139, 167, 0.15);
+    }
+
+    .pink-thumb-box {
+      width: 50px;
+      height: 50px;
+      background: #FFE4EC;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-right: 14px;
+      flex-shrink: 0;
+    }
+
+    .status-badge-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .badge-dark-purple { background: #3E3846; color: #FFFFFF; }
+    .badge-medium-gray { background: #8E8A94; color: #FFFFFF; }
+    .badge-pink-soft { background: #FAD6E2; color: #E88BA7; }
+    .badge-green-soft { background: #C7F4D2; color: #1E6B30; }
+    .badge-blue-soft { background: #B2DAFA; color: #134B73; }
+    .badge-yellow-soft { background: #FFF2B2; color: #8A6D00; }
+
+    .menu-option-row {
+      background: #FFF5F7;
+      border-radius: 18px;
+      padding: 14px 18px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .menu-option-row:hover { background: #FFE8EF; }
+
+    .menu-option-row .circle-icon {
+      width: 36px;
+      height: 36px;
+      background: #FFE4EC;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      font-size: 16px;
+    }
+
+    /* Secciones (Vistas SPA) */
+    .view {
+      display: none;
+      padding: 16px;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    /* Tarjetas Estilo Kawaii Generales */
+    .card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px;
+      margin-bottom: 14px;
+      border: 2px solid var(--border-color);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      position: relative;
+    }
+
+    .card-banner {
+      background: linear-gradient(135deg, #FFF4E0, #FAD6E2);
+      border: 2px solid var(--pastel-green);
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .card-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 22px;
+      color: var(--dark-green);
+      margin-bottom: 6px;
+    }
+
+    .subtitle-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--dark-green);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      opacity: 0.8;
+    }
+
+    .btn-pill {
+      background-color: var(--card-bg);
+      border: 2px solid var(--pastel-green);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-family: 'Fredoka', sans-serif;
+      color: var(--dark-green);
+      cursor: pointer;
+      font-weight: 500;
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    .btn-primary {
+      background-color: var(--pastel-green);
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--dark-green);
+    }
+
+    .btn-secondary {
+      background-color: var(--primary-pink);
+      color: var(--dark-green);
+      border: none;
+      width: 100%;
+      padding: 10px;
+      border-radius: 14px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-whatsapp {
+      background-color: #25D366;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    /* Sub-pestañas Almacén */
+    .wh-tab-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .wh-tab-btn {
+      padding: 8px 14px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      border: 1.5px solid var(--border-color);
+      background: var(--card-bg);
+      color: #666;
+      transition: all 0.2s;
+    }
+
+    .wh-tab-btn.active {
+      background: var(--dark-green);
+      color: white;
+      border-color: var(--dark-green);
+    }
+
+    /* Tablas Estilo Excel Kawaii */
+    .excel-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 8px;
+      background: #FFF;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .excel-table th {
+      background: #FFF0F5;
+      color: var(--dark-green);
+      font-weight: 700;
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 2px solid var(--primary-pink);
+    }
+    .excel-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #F0E6D8;
+      color: #444;
+    }
+
+    /* Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    .stat-card .num {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 20px;
+      color: var(--dark-green);
+    }
+
+    .stat-card .label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #666;
+    }
+
+    .category-card {
+      background-color: #FFF;
+      border-radius: 18px;
+      padding: 14px;
+      text-align: center;
+      border: 2px solid var(--border-color);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .category-card:hover { transform: translateY(-2px); }
+
+    .category-card.pink { background-color: #FFF0F5; border-color: #F8C3D2; }
+    .category-card.purple { background-color: #F5F0FF; border-color: #D7C7F4; }
+    .category-card.blue { background-color: #F0F7FF; border-color: #B2DAFA; }
+
+    /* Formularios */
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--dark-green);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background-color: #FAF6EE;
+      outline: none;
+      font-size: 13px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Acordeón */
+    .accordion-header {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--dark-green);
+      margin-bottom: 8px;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 12px;
+      background: #FAF6EE;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+
+    /* Modales */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      justify-content: center;
+      align-items: flex-end;
+      z-index: 200;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal-sheet {
+      width: 100%;
+      max-width: 480px;
+      background: var(--bg-color);
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      padding: 20px;
+      max-height: 85vh;
+      overflow-y: auto;
+      border-top: 3px solid var(--pastel-green);
+      box-shadow: 0 -10px 25px rgba(0,0,0,0.1);
+      animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .list-menu-item {
+      background: white;
+      border: 1.5px solid var(--border-color);
+      border-radius: 18px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--dark-green);
+    }
+
+    .list-menu-item .left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Navbar Inferior Fijo */
+    .navbar {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 20px);
+      max-width: 460px;
+      background-color: var(--card-bg);
+      border: 2px dashed var(--pastel-green);
+      border-radius: 28px;
+      padding: 5px 10px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      z-index: 100;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 16px;
+      color: #777;
+      font-size: 11px;
+      font-weight: 700;
+      gap: 2px;
+    }
+
+    .nav-item.active {
+      background-color: #FAF6EE;
+      color: var(--dark-green);
+      border: 1.5px solid var(--pastel-green);
+    }
+
+    .nav-icon { font-size: 18px; }
+
+    .admin-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .badge-pending { background: #FFF2B2; color: #8A6D00; }
+    .badge-approved { background: #C7F4D2; color: #1E6B30; }
+    .badge-shipped { background: #B2DAFA; color: #134B73; }
+
+    /* Estilos específicos para la pestaña Envíos */
+    .filter-tab-pill {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid transparent;
+    }
+    .filter-tab-pill.active {
+      background-color: #3E3846;
+      color: white;
+    }
+    .filter-tab-pill.inactive {
+      background-color: transparent;
+      color: #3E3846;
+      border-color: #E2D9C8;
+    }
+    .filter-count-badge {
+      background-color: rgba(255,255,255,0.25);
+      border-radius: 10px;
+      padding: 1px 6px;
+      font-size: 10px;
+    }
+    .filter-tab-pill.inactive .filter-count-badge {
+      background-color: #F8C3D2;
+      color: #37533E;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- BARRA SUPERIOR ROLES & AUTH -->
+    <div class="role-switcher-bar">
+      <span id="role-status-text">Vista: CLIENTA (Locker: BH53)</span>
+      <button class="role-toggle-btn" onclick="openLoginModal()">Login / Perfil 🔐</button>
+    </div>
+    
+    <!-- HEADER SUPERIOR PRINCIPAL -->
+    <header class="header">
+      <div class="brand-pill" onclick="switchTab('inicio')">
+        <span>🍓</span> DOMODACHI
+      </div>
+      <div class="header-actions">
+        <button class="pill-btn" onclick="toggleLang()">ES | EN</button>
+        <button class="icon-btn" onclick="showNotifToast()">🔔<span class="badge" id="notif-count">4</span></button>
+        <div class="user-avatar" id="avatar-btn" onclick="openProfileModal()">PF</div>
+      </div>
+    </header>
+
+    <!-- ==================== VISTAS CLIENTA ==================== -->
+
+    <!-- 1. INICIO -->
+    <section id="tab-inicio" class="view active">
+      <div class="card-banner">
+        <div class="subtitle-tag">NOVEDADES DOMODACHI</div>
+        <h2 class="card-title">Tablón de anuncios 📣</h2>
+        <p style="font-size: 12px; color: #555;">Órdenes abiertas, preventas y actualizaciones en un solo lugar.</p>
+        <div class="btn-pill" onclick="openRinconcitoModal()">Ver Rinconcito ✨</div>
+      </div>
+
+      <div class="card" onclick="switchTab('estado-cuenta')">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span class="subtitle-tag">ESTADO DE CUENTA</span>
+            <h3 style="font-family:'Fredoka'; font-size:24px; color:var(--dark-green);">$1,200.00 USD</h3>
+            <span style="font-size:11px; color:var(--accent-pink); font-weight:bold;">Consulta tu saldo y desglose ›</span>
+          </div>
+          <div style="font-size:32px;">💳</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-family:'Fredoka'; color:var(--dark-green); margin-bottom:12px; font-size:16px;">¿Qué deseas hacer hoy? ✨</h3>
+        <div class="grid-2">
+          <div class="category-card pink" onclick="switchTab('compras')">
+            <div style="font-size:28px; margin-bottom:4px;">🛒</div>
+            <strong style="display:block; font-size:13px; color:var(--dark-green);">Ordenar por link</strong>
+            <span style="font-size:10px; color:#666;">Cotiza productos</span>
+          </div>
+          <div class="category-card purple" onclick="switchTab('almacen')">
+            <div style="font-size:28px; margin-bottom:4px;">📦</div>
+            <strong style="display:block; font-size:13px; color:var(--dark-green);">Almacén Corea</strong>
+            <span style="font-size:10px; color:#666;">Ver mis artículos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tablón de Comunicados -->
+      <div class="card">
+        <h4 style="font-family:'Fredoka'; color:var(--dark-green); margin-bottom:8px;">Avisos Recientes 📌</h4>
+        <div id="announcements-list">
+          <!-- Cargado por JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ALMACÉN (CLIENTA VS ADMIN EXCEL POR PERSONA) -->
+    <section id="tab-almacen" class="view">
+      <div class="card-banner">
+        <div class="subtitle-tag">LOGÍSTICA • CASILLEROS</div>
+        <h2 class="card-title" id="wh-page-title">Inventario & Artículos 📦</h2>
+        <p style="font-size: 12px; color: #555;" id="wh-page-subtitle">Consulta la ubicación y estado en tiempo real de tus compras.</p>
+      </div>
+
+      <!-- VISTA CLIENTA: PESTAÑAS SIMPLES -->
+      <div id="client-warehouse-view">
+        <div class="wh-tab-bar">
+          <button class="wh-tab-btn active" id="wh-btn-all" onclick="filterWarehouseTab('all')">Todos (<span id="wh-count-all">0</span>)</button>
+          <button class="wh-tab-btn" id="wh-btn-llegado" onclick="filterWarehouseTab('llegado')">🎉 Llegados (<span id="wh-count-llegado">0</span>)</button>
+          <button class="wh-tab-btn" id="wh-btn-camino" onclick="filterWarehouseTab('camino')">✈️ En camino (<span id="wh-count-camino">0</span>)</button>
+          <button class="wh-tab-btn" id="wh-btn-corea" onclick="filterWarehouseTab('corea')">🇰🇷 En Corea (<span id="wh-count-corea">0</span>)</button>
+        </div>
+
+        <div class="card">
+          <h4 style="font-family:'Fredoka'; color:var(--dark-green); margin-bottom:12px;" id="wh-section-title">Mis Artículos Registrados</h4>
+          <div id="warehouse-item-list"></div>
+          <button class="btn-primary" style="margin-top:12px;" onclick="requestShipmentFromSelection()">Solicitar Envío de Selección</button>
+        </div>
+      </div>
+
+      <!-- VISTA ADMIN: EXCEL POR CLIENTA Y SOLICITUDES -->
+      <div id="admin-warehouse-view" style="display:none;">
+        
+        <!-- SECCIÓN DE TRASPASOS SOLICITADOS -->
+        <div class="card" style="border-color:var(--pastel-purple);">
+          <h4 style="font-family:'Fredoka'; color:var(--dark-green); margin-bottom:10px;">🔄 Traspasos de Guías Pendientes de Aprobación</h4>
+          <div id="admin-transfers-container"></div>
+        </div>
+
+        <!-- BUSCADOR / SELECTOR DE CLIENTA -->
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h4 style="font-family:'Fredoka'; color:var(--dark-green);">👑 Gestión de Almacén por Clienta</h4>
+            <button class="btn-pill" onclick="openAddPurchaseModal()">+ Nueva Compra / Pedido</button>
+          </div>
+
+          <div class="form-group">
+            <label>Seleccionar Clienta / Casillero *</label>
+            <select class="form-control" id="admin-selected-client-select" onchange="renderAdminExcelTable()">
+              <option value="BH53">BH53 - Marisol Pinto</option>
+              <option value="DOMO-99">DOMO-99 - Paola Ferreyro</option>
+              <option value="DOMO-44">DOMO-44 - Sofía López</option>
+            </select>
+          </div>
+
+          <!-- TABLA TIPO EXCEL INDIVIDUAL -->
+          <div style="overflow-x:auto;">
+            <table class="excel-table">
+              <thead>
+                <tr>
+                  <th>Artículo</th>
+                  <th>Fecha</th>
+                  <th>Peso</th>
+                  <th>Estado</th>
+                  <th>Comprobante</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="admin-excel-tbody">
+                <!-- JS Dynamic -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. COMPRAS & TIENDITA -->
+    <section id="tab-compras" class="view">
+      <div class="card-banner">
+        <div class="subtitle-tag">TIENDITA & COMPRAS • BH53</div>
+        <h2 class="card-title">Tienda & Cotizaciones 🛍️</h2>
+        <p style="font-size: 12px; color: #555;">Explora stock inmediato o envía links de compra internacional.</p>
+      </div>
+
+      <!-- PANEL SALDOS ADMIN / RECARGAS PENDIENTES -->
+      <div id="admin-balance-requests-card" class="card" style="display:none; border-color:var(--pastel-green);">
+        <h4 style="font-family:'Fredoka'; color:var(--dark-green); margin-bottom:10px;">💳 Recargas de Saldo Pendientes de Aprobación</h4>
+        <div id="admin-topups-container"></div>
+      </div>
+
+      <!-- Saldo (CLIENTA) -->
+      <div class="card" id="client-balance-card">
+        <span class="subtitle-tag">SALDO A FAVOR • KRW / MXN</span>
+        <h3 style="font-family:'Fredoka'; font-size:24px; color:var(--dark-green);" id="user-balance-text">Mi saldo: $1,450 MXN</h3>
+        <p style="font-size:11px; color:#666; margin-bottom:10px;">Recarga para tus próximos pagos. El saldo aprobado se asigna automáticamente.</p>
+        <button class="btn-secondary" onclick="openTopUpModal()">+ Recargar / subir comprobante</button>
+      </div>
+
+      <!-- Tiendita Stock Filtrable -->
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 style="font-family:'Fredoka'; color:var(--dark-green);">Tiendita Stock Disponible</h3>
+          <button id="admin-add-stock-btn" class="btn-pill" style="display:none;" onclick="openAddStockModal()">+ Agregar Producto / Stock 👑</button>
+        </div>
+
+        <div style="display:flex; gap:4px; overflow-x:auto; padding-bottom:8px; margin-bottom:8px;">
+          <button class="pill-btn cat-filter-btn active" onclick="filterCategory('All')">Todos</button>
+          <button class="pill-btn cat-filter-btn" onclick="filterCategory('Stock MX')">Stock MX 🇲🇽</button>
+          <button class="pill-btn cat-filter-btn" onclick="filterCategory('China')">China 🇨🇳</button>
+          <button class="pill-btn cat-filter-btn" onclick="filterCategory('Japón')">Japón 🇯🇵</button>
+          <button class="pill-btn cat-filter-btn" onclick="filterCategory('Fanmade')">Fanmade ✨</button>
+        </div>
+        <div id="stock-products-grid" class="grid-2">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+      <!-- Formulario de Cotización por Link (CLIENTA) -->
+      <div class="card" id="client-quote-form-card" style="margin-top:12px;">
+        <h3 style="font-family:'Fredoka'; color:var(--dark-green); margin-bottom:12px;">Solicitar Producto / Cotización</h3>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="no-link-check" onchange="toggleLinkField(this)">
+          <label for="no-link-check" style="margin:0;">No tengo link · ayúdame a encontrarlo</label>
+        </div>
+
+        <div class="form-group" id="group-link">
+          <label>Link del producto *</label>
+          <input type="url" class="form-control" id="cotiz-link" placeholder="https://m.bunjang.co.kr/products/...">
+        </div>
+
+        <div class="form-group">
+          <label>Nombre del producto *</label>
+          <input type="text" class="form-control" id="cotiz-nombre" placeholder="Álbum, photocard, ropa...">
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Variante / Miembro</label>
+            <input type="text" class="form-control" id="cotiz-var" placeholder="Felix · rosa · M">
+          </div>
+          <div class="form-group">
+            <label>Cantidad</label>
+            <input type="number" class="form-control" id="cotiz-cant" value="1" min="1">
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="submitQuoteRequest()">+ Solicitar Cotización</button>
+      </div>
+
+      <!-- Historial de Cotizaciones (SOLICITUDES PARA ACEPTAR EN ADMIN) -->
+      <div class="card">
+        <h4 style="font-family:'Fredoka'; color:var(--dark-green); margin-bottom:10px;" id="quotes-title-text">Mis Solicitudes y Cotizaciones</h4>
+        <div id="quotes-customer-list">
+          <!-- JS dynamic -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PESTAÑA ENVÍOS -->
+    <section id="tab-captured-shipments" class="view">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div>
+          <h1 style="font-family:'Fredoka'; font-size:24px; color:#2D2B3A; line-height:1.1;">DDOMODACHY</h1>
+          <span style="font-size:12px; color:#777;" id="envios-user-name">Marisol Pinto</span>
+        </div>
+        <div style="width:40px; height:40px; border:1.5px solid #E2D9C8; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#E88BA7; font-size:18px;">
+          <i class="fa-regular fa-user"></i>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h2 class="screen-main-title">Envíos</h2>
+        <span id="admin-mode-pill" style="display:none; background:#37533E; color:#FFF; font-weight:700; font-size:11px; padding:4px 10px; border-radius:12px;">
+          👑 Panel Admin: Solicitudes
+        </span>
+      </div>
+
+      <button id="btn-solicita-envio-client" onclick="openSolicitaEnvioModal()" style="width:100%; background-color:#FCD8E3; color:#3E3846; border:none; border-radius:18px; padding:14px; font-family:'Fredoka', sans-serif; font-size:15px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:16px; cursor:pointer; box-shadow:0 2px 8px rgba(252,216,227,0.4);">
+        <i class="fa-regular fa-paper-plane" style="font-size:16px;"></i> Solicita tu envío
+      </button>
+
+      <div id="shipment-filter-tabs-bar" style="display:flex; gap:8px; margin-bottom:16px; overflow-x:auto; padding-bottom:4px;">
+        <button class="filter-tab-pill active" id="filter-all-btn" onclick="filterShipmentsTab('all')">
+          Todas <span class="filter-count-badge" id="count-all">8</span>
+        </button>
+        <button class="filter-tab-pill inactive" id="filter-sol-btn" onclick="filterShipmentsTab('solicitudes')">
+          Solicitudes <span class="filter-count-badge" id="count-sol">2</span>
+        </button>
+        <button class="filter-tab-pill inactive" id="filter-cajas-btn" onclick="filterShipmentsTab('cajas')">
+          Cajas <span class="filter-count-badge" id="count-cajas">6</span>
+        </button>
+      </div>
+
+      <input type="text" class="search-input-pink" id="search-shipment-input" placeholder="Buscar por referencia, cliente o dirección..." onkeyup="filterCapturedShipments()">
+
+      <div id="captured-shipments-container"></div>
+    </section>
+
+    <!-- 5. MÁS / CONFIGURACIÓN -->
+    <section id="tab-mas" class="view">
+      <div class="card-banner">
+        <div class="subtitle-tag">MI PERFIL Y DIRECCIONES • BH53</div>
+        <h2 class="card-title">Configuración 🐾</h2>
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <button class="btn-pill" onclick="openAddressModal()">+ Agregar dirección</button>
+          <button class="btn-pill" style="background:#FFF0F5;" onclick="alert('Sesión cerrada.')">Cerrar sesión</button>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-bottom:14px;">
+        <div class="stat-card">
+          <div class="num" id="stat-disp">2</div>
+          <div class="label">Disponibles envío</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="stat-pending-pay">$0</div>
+          <div class="label">Saldo pendiente</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="stat-envios">8</div>
+          <div class="label">Envíos activos</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4 style="font-family:'Fredoka'; color:var(--dark-green); margin-bottom:10px;">Datos Personales</h4>
+        <div class="form-group">
+          <label>Mi Nombre</label>
+          <input type="text" class="form-control" id="profile-name" value="Marisol Pinto">
+        </div>
+        <div class="form-group">
+          <label>Email de contacto</label>
+          <input type="email" class="form-control" value="marisol.pinto@example.com" readonly style="opacity:0.7;">
+        </div>
+        <div class="form-group">
+          <label>Casillero Asignado</label>
+          <input type="text" class="form-control" value="BH53" readonly style="font-weight:bold; color:var(--dark-green);">
+        </div>
+        <button class="btn-secondary" onclick="alert('Nombre guardado correctamente.')">Guardar Nombre</button>
+      </div>
+
+      <div class="card">
+        <h4 style="font-family:'Fredoka'; color:var(--dark-green); margin-bottom:10px;">Mis Direcciones Guardadas</h4>
+        <div id="addresses-list"></div>
+      </div>
+    </section>
+
+    <!-- MODALES Y FORMULARIOS ADICIONALES -->
+
+    <!-- MODAL "NUEVA COMPRA / PEDIDO ADMIN" -->
+    <div class="modal-overlay" id="modal-add-purchase">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; font-size:20px; color:var(--dark-green);">➕ Registrar Compra / Pedido 👑</h3>
+          <button class="pill-btn" onclick="closeAddPurchaseModal()">✕</button>
+        </div>
+        <div class="form-group">
+          <label>Casillero / Clienta *</label>
+          <select class="form-control" id="purchase-client-target">
+            <option value="BH53">BH53 - Marisol Pinto</option>
+            <option value="DOMO-99">DOMO-99 - Paola Ferreyro</option>
+            <option value="DOMO-44">DOMO-44 - Sofía López</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nombre del Artículo *</label>
+          <input type="text" class="form-control" id="purchase-item-name" placeholder="Álbum, Photocard, Ropa...">
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Peso (gramos)</label>
+            <input type="number" class="form-control" id="purchase-item-weight" placeholder="350">
+          </div>
+          <div class="form-group">
+            <label>Estatus Inicial</label>
+            <select class="form-control" id="purchase-item-status">
+              <option value="En Corea">🇰🇷 En Corea</option>
+              <option value="En camino (Internacional)">✈️ En camino</option>
+              <option value="Llegado / Listo para entrega">🎉 Llegado / Listo</option>
+            </select>
+          </div>
+        </div>
+        <button onclick="saveNewAdminPurchase()" class="btn-primary" style="background-color:var(--dark-green); margin-top:8px;">
+          💾 Guardar en Almacén de la Clienta
+        </button>
+      </div>
+    </div>
+
+    <!-- MODAL "AGREGAR PRODUCTO A TIENDITA CON ETIQUETAS" (ADMIN) -->
+    <div class="modal-overlay" id="modal-add-stock-item">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; font-size:20px; color:var(--dark-green);">🏬 Agregar Producto a Tiendita 👑</h3>
+          <button class="pill-btn" onclick="closeAddStockModal()">✕</button>
+        </div>
+        <div class="form-group">
+          <label>Nombre del Producto *</label>
+          <input type="text" class="form-control" id="stock-name-input" placeholder="Album SKZ, Candybong TWICE...">
+        </div>
+        <div class="form-group">
+          <label>Etiqueta / Sección *</label>
+          <select class="form-control" id="stock-tag-input">
+            <option value="Stock MX">Stock MX 🇲🇽</option>
+            <option value="China">China 🇨🇳</option>
+            <option value="Japón">Japón 🇯🇵</option>
+            <option value="Fanmade">Fanmade ✨</option>
+          </select>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Precio ($ MXN) *</label>
+            <input type="number" class="form-control" id="stock-price-input" placeholder="650">
+          </div>
+          <div class="form-group">
+            <label>Stock Disponible</label>
+            <input type="number" class="form-control" id="stock-qty-input" value="5">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Emoji / Ícono representativo</label>
+          <input type="text" class="form-control" id="stock-emoji-input" value="🛍️">
+        </div>
+        <button onclick="saveNewStockProduct()" class="btn-primary" style="background-color:var(--dark-green); margin-top:8px;">
+          ✨ Publicar en Tiendita
+        </button>
+      </div>
+    </div>
+
+    <!-- MODAL "GESTIONAR COTIZACIÓN" (ADMIN CON TODOS LOS DATOS Y COMENTARIOS) -->
+    <div class="modal-overlay" id="modal-admin-quote">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; font-size:20px; color:var(--dark-green);">Revisar y Cotizar Solicitud 👑</h3>
+          <button class="pill-btn" onclick="closeAdminQuoteModal()">✕</button>
+        </div>
+
+        <div style="background:#FFF; border:1px solid var(--border-color); border-radius:14px; padding:12px; margin-bottom:12px;">
+          <span style="font-size:11px; color:#888; display:block;">Cliente / Casillero:</span>
+          <strong id="admin-quote-client" style="color:var(--dark-green); font-size:14px;">BH53 - Marisol Pinto</strong>
+          
+          <span style="font-size:11px; color:#888; display:block; margin-top:8px;">Producto Solicitado:</span>
+          <strong id="admin-quote-prod-name" style="font-size:14px; color:#2D2D2D;">Lightstick Seventeen Ver 3</strong>
+
+          <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:12px;">
+            <span>Variante: <strong id="admin-quote-variant">Estándar</strong></span>
+            <span>Cantidad: <strong id="admin-quote-qty">1</strong></span>
+          </div>
+
+          <span style="font-size:11px; color:#888; display:block; margin-top:8px;">Link del Producto:</span>
+          <a id="admin-quote-link" href="#" target="_blank" style="color:var(--accent-pink); word-break:break-all; font-size:12px; font-weight:bold;">Ver Link Externo 🔗</a>
+        </div>
+
+        <div class="form-group">
+          <label>Asignar Precio Final ($ MXN) *</label>
+          <input type="number" class="form-control" id="admin-quote-price-input" placeholder="Ej: 1450">
+        </div>
+
+        <div class="form-group">
+          <label>Comentarios / Notas para la clienta (opcional)</label>
+          <textarea class="form-control" id="admin-quote-comment-input" rows="2" placeholder="Ej: Incluye envío doméstico en Corea / Tiempo estimado 10 días..."></textarea>
+        </div>
+
+        <button onclick="saveAdminQuotePrice()" class="btn-primary" style="background-color:var(--dark-green); margin-top:8px;">
+          💾 Enviar Cotización a la Clienta
+        </button>
+      </div>
+    </div>
+
+    <!-- MODAL "PROCESAR PAGO DE COTIZACIÓN" (CLIENTA) -->
+    <div class="modal-overlay" id="modal-pay-quote">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; font-size:20px; color:#3E3846;">Completar Pago de Cotización</h3>
+          <button class="pill-btn" onclick="closePayQuoteModal()">✕</button>
+        </div>
+
+        <div style="background:#FFF5F7; border-radius:14px; padding:12px; margin-bottom:12px; border:1px solid #F8C3D2;">
+          <span style="font-size:11px; color:#888; display:block;">Producto:</span>
+          <strong id="pay-quote-prod-name" style="font-size:15px; color:#2D2D2D;">-</strong>
+          <div style="display:flex; justify-content:space-between; margin-top:6px; align-items:center;">
+            <span style="font-size:12px; color:#666;">Precio Total Cotizado:</span>
+            <strong id="pay-quote-price" style="font-size:18px; color:var(--accent-pink);">$0 MXN</strong>
+          </div>
+          <p id="pay-quote-comment" style="font-size:11px; color:#555; margin-top:6px; font-style:italic; border-top:1px dashed #F8C3D2; padding-top:4px;"></p>
+        </div>
+
+        <div class="form-group">
+          <label>Selecciona Opción de Envío *</label>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:4px;">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:600; font-size:13px;">
+              <input type="radio" name="shipping-option" value="correos" checked onchange="handleShippingOptionChange(this.value)">
+              🇲🇽 Correos de México (Subir comprobante)
+            </label>
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:600; font-size:13px;">
+              <input type="radio" name="shipping-option" value="privada" onchange="handleShippingOptionChange(this.value)">
+              📦 Paquetería Privada (Coordinar por WhatsApp)
+            </label>
+          </div>
+        </div>
+
+        <!-- SECCIÓN CORREOS DE MÉXICO -->
+        <div id="section-correos-pay" style="display:block; border-top:1px dashed var(--border-color); padding-top:12px; margin-top:8px;">
+          <div style="background:#FAF6EE; border:1px solid var(--border-color); border-radius:12px; padding:10px; font-size:11px; margin-bottom:10px;">
+            <strong>Cuentas Bancarias para Transferencia:</strong><br>
+            BBVA Bancomer | CLABE: 012180001234567890<br>
+            Titular: DOMODACHI SHOP
+          </div>
+
+          <div class="form-group">
+            <label>Subir Fotografía / Comprobante de Pago *</label>
+            <input type="file" class="form-control" id="quote-payment-file" accept="image/*,.pdf" onchange="handleProofImageUpload(event)">
+          </div>
+
+          <div id="preview-proof-box" style="display:none; text-align:center; margin-bottom:10px;">
+            <img id="preview-proof-img" src="" style="max-height:120px; border-radius:8px; border:1px solid var(--border-color); margin:0 auto;">
+          </div>
+
+          <button onclick="submitQuotePaymentProof()" class="btn-primary" style="background-color:var(--dark-green);">
+            📤 Enviar Comprobante a Revisión
+          </button>
+        </div>
+
+        <!-- SECCIÓN PAQUETERÍA PRIVADA -->
+        <div id="section-privada-pay" style="display:none; border-top:1px dashed var(--border-color); padding-top:12px; margin-top:8px;">
+          <p style="font-size:12px; color:#555; margin-bottom:10px;">
+            Para envíos por paquetería privada (FedEx, DHL, Estafeta), coordina directamente con atención al cliente vía WhatsApp.
+          </p>
+          <button onclick="openWhatsAppQuoteContact()" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" style="font-size:18px;"></i> Contactar por WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL "VISUALIZAR COMPROBANTE" (ADMIN) -->
+    <div class="modal-overlay" id="modal-view-proof">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; font-size:20px; color:var(--dark-green);">Revisar Comprobante 📸</h3>
+          <button class="pill-btn" onclick="closeViewProofModal()">✕</button>
+        </div>
+
+        <div style="text-align:center; margin-bottom:14px;">
+          <img id="view-proof-img-display" src="" alt="Comprobante" style="width:100%; max-height:300px; object-fit:contain; border-radius:12px; border:1px solid var(--border-color);">
+        </div>
+
+        <button onclick="closeViewProofModal()" class="btn-secondary">Cerrar</button>
+      </div>
+    </div>
+
+    <!-- MODAL "SOLICITA TU ENVÍO" (CLIENTA) -->
+    <div class="modal-overlay" id="modal-solicita-envio">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; font-size:22px; color:#3E3846;">Solicita tu envío</h3>
+          <button class="pill-btn" onclick="closeSolicitaEnvioModal()">✕</button>
+        </div>
+
+        <form onsubmit="submitSolicitaEnvio(event)">
+          <div class="form-group">
+            <label>Dirección de entrega</label>
+            <textarea class="form-control" id="envio-form-address" rows="2" required placeholder="Av. Libertador, Caracas, Venezuela"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="text" class="form-control" id="envio-form-phone" required placeholder="+58 412-5551234">
+          </div>
+
+          <div class="form-group">
+            <label>Artículos / Notas</label>
+            <textarea class="form-control" id="envio-form-notes" rows="3" placeholder="Ingresa los artículos o notas sobre tu paquete..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Transportista preferido (opcional)</label>
+            <select class="form-control" id="envio-form-carrier">
+              <option value="Correos de México">🚚 Correos de México</option>
+              <option value="Paquetería Privada (FedEx/DHL)">📦 Paquetería Privada (FedEx / DHL / Estafeta)</option>
+              <option value="Por asignar">Sin preferencia (Asignar por Admin)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-primary" style="background-color:#FCD8E3; color:#3E3846; margin-top:10px; font-weight:700;">
+            Enviar solicitud
+          </button>
+          
+          <button type="button" class="btn-secondary" style="background:transparent; border:1px solid #E2D9C8; color:#555; margin-top:8px;" onclick="closeSolicitaEnvioModal()">
+            Cancelar
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL DETALLE DE SOLICITUD Y ENVÍO DE GUÍA (ADMIN / DUEÑA) -->
+    <div class="modal-overlay" id="modal-detalle-envio">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; font-size:22px; color:#3E3846;" id="detail-title">Solicitud de envío</h3>
+          <button class="pill-btn" onclick="closeDetalleEnvioModal()">✕</button>
+        </div>
+
+        <div style="background:#FFF5F7; border-radius:18px; padding:16px; font-size:13px; margin-bottom:14px; border:1px solid #F8C3D2;">
+          
+          <div style="margin-bottom:12px; background:#FFFFFF; padding:10px; border-radius:12px; border:1px solid #E2D9C8;">
+            <span style="font-size:10px; font-weight:800; color:#37533E; text-transform:uppercase; display:block; margin-bottom:4px;">📍 DIRECCIÓN DE ENTREGA (CLIENTA):</span>
+            <p style="color:#2D2D2D; font-weight:700; font-size:14px;" id="detail-address">Av. Libertador, Caracas, Venezuela</p>
+            <span style="font-size:11px; color:#666;" id="detail-phone">Teléfono: +58 412-5551234</span>
+            <div style="margin-top:6px;">
+              <button onclick="copyAddressToClipboard()" class="btn-pill" style="font-size:10px; padding:2px 8px;">📋 Copiar Dirección</button>
+            </div>
+          </div>
+
+          <div style="margin-bottom:10px;">
+            <span style="font-size:10px; font-weight:700; color:#888; display:block;">Cliente / Casillero:</span>
+            <strong style="color:#2D2D2D;" id="detail-client">Marisol Pinto (BH53)</strong>
+          </div>
+
+          <div style="margin-bottom:10px;">
+            <span style="font-size:10px; font-weight:700; color:#888; display:block;">Contenido y notas de la solicitud:</span>
+            <p style="color:#444;" id="detail-notes">Artículos de tu tienda favorita, listos para su próxima etapa.</p>
+          </div>
+
+          <div style="margin-bottom:10px;" id="box-detail-tracking-info">
+            <span style="font-size:10px; font-weight:700; color:#888; display:block;">Guía Actual:</span>
+            <strong style="color:#2D2D2D;" id="detail-tracking">Pendiente de envío</strong>
+            <span style="font-size:11px; color:#666; display:block;" id="detail-carrier">Paquetería: Por asignar</span>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+            <div>
+              <span style="font-size:10px; font-weight:700; color:#888; display:block;">Estado:</span>
+              <span class="status-badge-pill badge-pink-soft" id="detail-status-pill">Solicitada</span>
+            </div>
+            <div>
+              <span style="font-size:10px; font-weight:700; color:#888; display:block;">Fecha:</span>
+              <span style="color:#666; font-size:11px;" id="detail-date">1 Nov 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="admin-shipping-controls" style="border-top:2px dashed #F8C3D2; padding-top:14px; margin-top:10px;">
+          <h4 style="font-family:'Fredoka'; color:var(--dark-green); margin-bottom:10px; font-size:16px;">👑 Asignar y Mandar Guía al Cliente</h4>
+          
+          <div class="form-group">
+            <label>Seleccionar Paquetería *</label>
+            <select class="form-control" id="admin-update-carrier" style="background:#FFF;">
+              <option value="Correos de México 🇲🇽">🚚 Correos de México</option>
+              <option value="FedEx (Paquetería Privada)">📦 FedEx (Paquetería Privada)</option>
+              <option value="DHL (Paquetería Privada)">📦 DHL (Paquetería Privada)</option>
+              <option value="Estafeta (Paquetería Privada)">📦 Estafeta (Paquetería Privada)</option>
+              <option value="Redpack (Paquetería Privada)">📦 Redpack (Paquetería Privada)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Número de Guía / Tracking Oficial *</label>
+            <input type="text" class="form-control" id="admin-update-tracking" placeholder="Ej. DDM92830909" style="background:#FFF; font-weight:bold;">
+          </div>
+
+          <button onclick="sendTrackingToClient()" class="btn-primary" style="background-color:var(--dark-green); padding:14px; margin-top:8px;">
+            🚀 Mandar Guía y Marcar "En Tránsito"
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL "TU RINCONCITO DOMODACHI" -->
+    <div class="modal-overlay" id="modal-rinconcito">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; color:var(--dark-green);">Tu rinconcito DOMODACHI 🍓</h3>
+          <button class="pill-btn" onclick="closeRinconcitoModal()">Cerrar</button>
+        </div>
+
+        <div class="list-menu-item" onclick="closeRinconcitoModal(); switchTab('captured-stock');">
+          <div class="left"><span>🛍️</span> <span>Tiendita Domodachi</span></div>
+          <span style="font-size:11px; color:#888;">Stock & Pre-orders</span>
+        </div>
+
+        <div class="list-menu-item" onclick="closeRinconcitoModal(); switchTab('compras');">
+          <div class="left"><span>🔗</span> <span>Ordenar por link</span></div>
+          <span>→</span>
+        </div>
+
+        <div class="list-menu-item" onclick="openPaymentAccountsModal()">
+          <div class="left"><span>💳</span> <span>Cuentas de pago (Wise / SPEI BBVA)</span></div>
+          <span>→</span>
+        </div>
+
+        <div class="list-menu-item" onclick="closeRinconcitoModal(); switchTab('mas');">
+          <div class="left"><span>🎅</span> <span>Mi perfil y direcciones</span></div>
+          <span style="font-size:11px; color:#888;" id="menu-addr-count">1 dirección</span>
+        </div>
+
+        <div class="list-menu-item" onclick="closeRinconcitoModal(); switchTab('captured-announcements');">
+          <div class="left"><span>📣</span> <span>Anuncios</span></div>
+          <span style="font-size:11px; color:#888;">Novedades</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL CUENTAS DE PAGO -->
+    <div class="modal-overlay" id="modal-cuentas">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; color:var(--dark-green);">Cuentas de pago 🏦</h3>
+          <button class="pill-btn" onclick="closePaymentAccountsModal()">Cerrar</button>
+        </div>
+        <p style="font-size:12px; color:#666; margin-bottom:12px;">Elige la cuenta que te resulte más cómoda y conserva tu comprobante.</p>
+
+        <div class="card" style="border-color:var(--primary-pink);">
+          <span class="subtitle-tag">INTERNACIONAL · KRW / USD</span>
+          <h4 style="font-family:'Fredoka';">Wise</h4>
+          <p style="font-size:13px; font-weight:bold; margin:6px 0;">Usuario: @domodachi_kpop</p>
+          <button class="btn-pill" onclick="copyToClipboard('@domodachi_kpop')">Copiar datos de la cuenta</button>
+        </div>
+
+        <div class="card" style="border-color:var(--pastel-purple);">
+          <span class="subtitle-tag">MÉXICO · SPEI / BANCO</span>
+          <h4 style="font-family:'Fredoka';">BBVA México</h4>
+          <p style="font-size:12px; margin:4px 0;">CLABE: 012180001234567890</p>
+          <p style="font-size:12px;">Beneficiario: DOMODACHI SHOP</p>
+          <button class="btn-pill" onclick="copyToClipboard('012180001234567890')">Copiar CLABE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL AUTH / LOGIN -->
+    <div class="modal-overlay" id="modal-login">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; color:var(--dark-green);">Iniciar Sesión 🍓</h3>
+          <button class="pill-btn" onclick="closeLoginModal()">Cerrar</button>
+        </div>
+        <p style="font-size:12px; color:#666; margin-bottom:14px;">Elige tu perfil para ingresar a la plataforma:</p>
+        <button class="btn-primary" style="margin-bottom:10px; background:var(--primary-pink); color:var(--dark-green);" onclick="loginAs('cliente')">Ingresar como Clienta 🎀 (Marisol Pinto / BH53)</button>
+        <button class="btn-primary" style="background:var(--dark-green);" onclick="loginAs('admin')">Ingresar como Administradora / Dueña 👑</button>
+      </div>
+    </div>
+
+    <!-- MODAL AGREGAR DIRECCIÓN -->
+    <div class="modal-overlay" id="modal-direccion">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; color:var(--dark-green);">Nueva Dirección 📍</h3>
+          <button class="pill-btn" onclick="closeAddressModal()">Cerrar</button>
+        </div>
+        <div class="form-group">
+          <label>Nombre del destinatario *</label>
+          <input type="text" class="form-control" id="addr-name" placeholder="Nombre completo">
+        </div>
+        <div class="form-group">
+          <label>Calle y Número *</label>
+          <input type="text" class="form-control" id="addr-street" placeholder="Calle, # ext e int">
+        </div>
+        <button class="btn-primary" onclick="saveNewAddress()">Guardar Dirección</button>
+      </div>
+    </div>
+
+    <!-- MODAL RECARGAR / SUBIR COMPROBANTE -->
+    <div class="modal-overlay" id="modal-recarga">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 style="font-family:'Fredoka'; color:var(--dark-green);">Subir Comprobante 🧾</h3>
+          <button class="pill-btn" onclick="closeTopUpModal()">Cerrar</button>
+        </div>
+        <div class="form-group">
+          <label>Monto Transferido ($ MXN) *</label>
+          <input type="number" class="form-control" id="topup-amount" placeholder="Ej: 500">
+        </div>
+        <button class="btn-primary" onclick="submitTopUpProof()">Enviar a Revisión</button>
+      </div>
+    </div>
+
+    <!-- NAVBAR INFERIOR MÓVIL -->
+    <nav class="navbar" id="customer-navbar">
+      <button class="nav-item active" onclick="switchTab('inicio')">
+        <span class="nav-icon">🎄</span>
+        Inicio
+      </button>
+      <button class="nav-item" onclick="switchTab('almacen')">
+        <span class="nav-icon">📦</span>
+        Almacén
+      </button>
+      <button class="nav-item" onclick="switchTab('compras')">
+        <span class="nav-icon">🛍️</span>
+        Compras
+      </button>
+      <button class="nav-item" onclick="switchTab('captured-shipments')">
+        <span class="nav-icon">🔎</span>
+        Envíos
+      </button>
+      <button class="nav-item" onclick="openRinconcitoModal()">
+        <span class="nav-icon">🐾</span>
+        Más
+      </button>
+    </nav>
+
+  </div>
+
+  <script>
+    /* ================= ESTADO GLOBAL Y BASE DE DATOS ================= */
+    let currentRole = 'CLIENTE'; 
+    let currentCategoryFilter = 'All';
+    let currentShipmentsTabFilter = 'all'; 
+    let currentWarehouseTabFilter = 'all';
+    let selectedShipmentId = null;
+    let selectedQuoteId = null;
+    let uploadedProofDataUrl = null;
+
+    let database = {
+      userBalance: 1450.00,
+      stockItems: [
+        { id: 1, name: 'Bolso de mano rosa', price: '1,200 USD', stock: '1,200 disponibles', status: 'Oculto', img: '👜' },
+        { id: 2, name: 'Bolso de mano rosa', price: '1,200 USD', stock: '1,200 disponibles', status: 'Oculto', img: '👜' },
+        { id: 3, name: 'Bolso de mano rosa', price: '1,200 USD', stock: '1,200 disponibles', status: 'Oculto', img: '👜' }
+      ],
+      capturedPayments: [
+        { id: 1, name: 'Paquete de papelería', status: 'Pendiente de confirmación', amount: '$1,200.00 USD' },
+        { id: 2, name: 'Paquete de papelería', status: 'Pendiente de confirmación', amount: '$1,200.00 USD' }
+      ],
+      pendingTopUps: [
+        { id: 1, lockerId: 'BH53', clientName: 'Marisol Pinto', amount: 500, proofUrl: null, date: 'Hoy' }
+      ],
+      transferRequests: [
+        { id: 1, originLocker: 'BH53', targetLocker: 'DOMO-99', itemName: 'Stray Kids Ate Photocard Felix', status: 'Pendiente' }
+      ],
+      capturedShipments: [
+        { 
+          id: 1, 
+          type: 'solicitud',
+          title: 'Solicitud de envío #101', 
+          status: 'Solicitada', 
+          badgeClass: 'badge-pink-soft', 
+          notes: 'Merch SKZ y photocards con protección extra.', 
+          address: 'Av. Libertador, Caracas, Venezuela',
+          phone: '+58 412-5551234',
+          carrier: 'Por asignar',
+          tracking: 'Pendiente',
+          client: 'Marisol Pinto (BH53)',
+          date: '1 Nov 2026'
+        },
+        { 
+          id: 2, 
+          type: 'solicitud',
+          title: 'Solicitud de envío #102', 
+          status: 'Solicitada', 
+          badgeClass: 'badge-pink-soft', 
+          notes: 'Álbumes Golden BTS.', 
+          address: 'Av. Insurgentes Sur 123, Roma Norte, CDMX',
+          phone: '5512345678',
+          carrier: 'Por asignar',
+          tracking: 'Pendiente',
+          client: 'Paola Ferreyro (BH53)',
+          date: '1 Nov 2026'
+        },
+        { 
+          id: 3, 
+          type: 'caja',
+          title: 'Paquete de papelería', 
+          status: 'En tránsito', 
+          badgeClass: 'badge-dark-purple', 
+          notes: 'Artículos de tu tienda favorita.', 
+          address: 'Av. Insurgentes Sur 123, CDMX',
+          phone: '5512345678',
+          carrier: 'DHL (Paquetería Privada)',
+          tracking: 'DDM92830909',
+          client: 'Marisol Pinto (BH53)',
+          date: '30 Sep 2026'
+        }
+      ],
+      capturedAnnouncements: [
+        { id: 1, title: 'Paquete de papelería', desc: 'Artículos de tu tienda favorita, listos para su próxima etapa.' }
+      ],
+      products: [
+        { id: 101, name: 'Stray Kids 5-STAR Album', category: 'Stock MX', price: 680, stock: 4, img: '💿' },
+        { id: 102, name: 'TWICE Candybong Lightstick', category: 'Japón', price: 1250, stock: 2, img: '🍭' }
+      ],
+      warehouseItems: [
+        { id: 201, lockerId: "BH53", name: "BTS Golden Album (Photobook)", weight: 350, date: "28/Oct/2026", status: "Llegado / Listo para entrega", proofUrl: null },
+        { id: 202, lockerId: "BH53", name: "Stray Kids Ate Photocard Felix", weight: 25, date: "01/Nov/2026", status: "En camino (Internacional)", proofUrl: null },
+        { id: 203, lockerId: "BH53", name: "Seventeen Lightstick Ver 3", weight: 450, date: "02/Nov/2026", status: "En Corea", proofUrl: null },
+        { id: 204, lockerId: "DOMO-99", name: "Blackpink Pink Venom Hoodie", weight: 600, date: "01/Nov/2026", status: "En Corea", proofUrl: null }
+      ],
+      quoteRequests: [
+        { 
+          id: 301, 
+          lockerId: "BH53", 
+          clientName: "Marisol Pinto",
+          name: "Lightstick Seventeen Ver 3", 
+          link: "https://m.bunjang.co.kr/products/12345678", 
+          qty: 1, 
+          var: "Estándar", 
+          status: "En revisión", 
+          priceMXN: 0,
+          comment: "",
+          shippingType: null,
+          proofUrl: null
+        }
+      ],
+      addresses: [
+        { id: 1, name: "Marisol Pinto", street: "Av. Libertador, Caracas, Venezuela", col: "Centro", cp: "1010", state: "Caracas", phone: "+58 412-5551234" }
+      ]
+    };
+
+    /* ================= NAVEGACIÓN Y LOGIN ================= */
+    function switchTab(tabName) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      const targetView = document.getElementById('tab-' + tabName);
+      if (targetView) targetView.classList.add('active');
+
+      const indexMap = { 'inicio': 0, 'almacen': 1, 'compras': 2, 'captured-shipments': 3, 'mas': 4 };
+      if (indexMap[tabName] !== undefined) {
+        document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.nav-item')[indexMap[tabName]].classList.add('active');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      renderAll();
+    }
+
+    function openLoginModal() { document.getElementById('modal-login').classList.add('open'); }
+    function closeLoginModal() { document.getElementById('modal-login').classList.remove('open'); }
+
+    function loginAs(role) {
+      closeLoginModal();
+      currentRole = role.toUpperCase();
+      if (role === 'admin') {
+        document.getElementById('role-status-text').innerText = 'Vista: DUEÑA / ADMIN 👑';
+        document.getElementById('avatar-btn').innerText = '👑';
+        switchTab('almacen');
+      } else {
+        document.getElementById('role-status-text').innerText = 'Vista: CLIENTA (Locker: BH53)';
+        document.getElementById('avatar-btn').innerText = 'MP';
+        switchTab('inicio');
+      }
+    }
+
+    /* ================= GESTIÓN DE SUB-PESTAÑAS ALMACÉN Y TABLA EXCEL ADMIN ================= */
+    function filterWarehouseTab(tabKey) {
+      currentWarehouseTabFilter = tabKey;
+      
+      document.getElementById('wh-btn-all').className = tabKey === 'all' ? 'wh-tab-btn active' : 'wh-tab-btn';
+      document.getElementById('wh-btn-llegado').className = tabKey === 'llegado' ? 'wh-tab-btn active' : 'wh-tab-btn';
+      document.getElementById('wh-btn-camino').className = tabKey === 'camino' ? 'wh-tab-btn active' : 'wh-tab-btn';
+      document.getElementById('wh-btn-corea').className = tabKey === 'corea' ? 'wh-tab-btn active' : 'wh-tab-btn';
+
+      renderWarehouseItems();
+    }
+
+    function openAddPurchaseModal() { document.getElementById('modal-add-purchase').classList.add('open'); }
+    function closeAddPurchaseModal() { document.getElementById('modal-add-purchase').classList.remove('open'); }
+
+    function saveNewAdminPurchase() {
+      const locker = document.getElementById('purchase-client-target').value;
+      const name = document.getElementById('purchase-item-name').value.trim();
+      const weight = parseInt(document.getElementById('purchase-item-weight').value) || 100;
+      const status = document.getElementById('purchase-item-status').value;
+
+      if (!name) {
+        alert("Por favor ingresa el nombre del artículo.");
+        return;
+      }
+
+      database.warehouseItems.unshift({
+        id: Date.now(),
+        lockerId: locker,
+        name: name,
+        weight: weight,
+        date: "Hoy",
+        status: status,
+        proofUrl: null
+      });
+
+      alert(`👑 Pedido agregado exitosamente al casillero de ${locker}`);
+      closeAddPurchaseModal();
+      renderAll();
+    }
+
+    function renderAdminExcelTable() {
+      const selectedLocker = document.getElementById('admin-selected-client-select').value;
+      const tbody = document.getElementById('admin-excel-tbody');
+
+      const clientItems = database.warehouseItems.filter(i => i.lockerId === selectedLocker);
+
+      if (clientItems.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#888;">No hay artículos registrados para este casillero.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = clientItems.map(i => `
+        <tr>
+          <td><strong>${i.name}</strong></td>
+          <td>${i.date}</td>
+          <td>${i.weight}g</td>
+          <td>
+            <select style="font-size:11px; padding:2px;" onchange="updateItemWarehouseStatus(${i.id}, this.value)">
+              <option value="En Corea" ${i.status === 'En Corea' ? 'selected' : ''}>3. En Corea 🇰🇷</option>
+              <option value="En camino (Internacional)" ${i.status === 'En camino (Internacional)' ? 'selected' : ''}>4. En camino ✈️</option>
+              <option value="Llegado / Listo para entrega" ${i.status === 'Llegado / Listo para entrega' ? 'selected' : ''}>6. Llegado / Listo 🎉</option>
+            </select>
+          </td>
+          <td>${i.proofUrl ? `<button class="btn-pill" style="font-size:10px; padding:1px 6px;" onclick="openViewProofModal('${i.proofUrl}')">🖼️ Ver</button>` : 'Sin foto'}</td>
+          <td><button class="btn-pill" style="font-size:10px; color:red; padding:1px 6px;" onclick="deleteWarehouseItem(${i.id})">Eliminar</button></td>
+        </tr>
+      `).join('');
+    }
+
+    function deleteWarehouseItem(id) {
+      if (confirm("¿Estás segura de eliminar este artículo del almacén?")) {
+        database.warehouseItems = database.warehouseItems.filter(i => i.id !== id);
+        renderAll();
+      }
+    }
+
+    function renderAdminTransfers() {
+      const container = document.getElementById('admin-transfers-container');
+      if (database.transferRequests.length === 0) {
+        container.innerHTML = `<p style="font-size:11px; color:#888;">No hay traspasos pendientes.</p>`;
+        return;
+      }
+
+      container.innerHTML = database.transferRequests.map(t => `
+        <div style="background:#FFF; border:1px solid var(--border-color); border-radius:12px; padding:10px; margin-bottom:8px; font-size:12px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <strong>${t.originLocker} ➔ ${t.targetLocker}</strong>
+            <p style="color:#555;">${t.itemName}</p>
+          </div>
+          <button class="btn-primary" style="font-size:11px; padding:6px 10px; width:auto;" onclick="approveTransfer(${t.id})">Aprobar Traspaso</button>
+        </div>
+      `).join('');
+    }
+
+    function approveTransfer(id) {
+      const req = database.transferRequests.find(r => r.id === id);
+      if (req) {
+        const item = database.warehouseItems.find(i => i.lockerId === req.originLocker && i.name === req.itemName);
+        if (item) item.lockerId = req.targetLocker;
+        database.transferRequests = database.transferRequests.filter(r => r.id !== id);
+        alert("👑 Traspaso aprobado y casillero actualizado.");
+        renderAll();
+      }
+    }
+
+    /* ================= TIENDITA CON ETIQUETAS Y STOCK ADMIN ================= */
+    function openAddStockModal() { document.getElementById('modal-add-stock-item').classList.add('open'); }
+    function closeAddStockModal() { document.getElementById('modal-add-stock-item').classList.remove('open'); }
+
+    function saveNewStockProduct() {
+      const name = document.getElementById('stock-name-input').value.trim();
+      const tag = document.getElementById('stock-tag-input').value;
+      const price = parseFloat(document.getElementById('stock-price-input').value) || 0;
+      const qty = parseInt(document.getElementById('stock-qty-input').value) || 1;
+      const emoji = document.getElementById('stock-emoji-input').value.trim() || '🛍️';
+
+      if (!name || price <= 0) {
+        alert("Por favor ingresa un nombre y precio válido.");
+        return;
+      }
+
+      database.products.unshift({
+        id: Date.now(),
+        name: name,
+        category: tag,
+        price: price,
+        stock: qty,
+        img: emoji
+      });
+
+      alert(`✨ Producto publicado exitosamente en la etiqueta: ${tag}`);
+      closeAddStockModal();
+      renderStockGrid();
+    }
+
+    /* ================= COTIZACIONES, COMPRAS Y SALDOS ADMIN ================= */
+
+    function submitQuoteRequest() {
+      const name = document.getElementById('cotiz-nombre').value.trim();
+      const link = document.getElementById('cotiz-link').value.trim();
+      const variant = document.getElementById('cotiz-var').value.trim() || 'Estándar';
+      const cant = parseInt(document.getElementById('cotiz-cant').value) || 1;
+
+      if (!name) {
+        alert("Por favor ingresa el nombre del producto.");
+        return;
+      }
+
+      database.quoteRequests.unshift({
+        id: Date.now(),
+        lockerId: "BH53",
+        clientName: "Marisol Pinto",
+        name: name,
+        link: link || "Sin link proporcionado",
+        qty: cant,
+        var: variant,
+        status: "En revisión",
+        priceMXN: 0,
+        comment: "",
+        shippingType: null,
+        proofUrl: null
+      });
+
+      alert("✨ Cotización enviada con éxito. El equipo revisará tu solicitud.");
+      document.getElementById('cotiz-nombre').value = '';
+      document.getElementById('cotiz-link').value = '';
+      renderQuotesList();
+    }
+
+    function openAdminQuoteModal(id) {
+      selectedQuoteId = id;
+      const quote = database.quoteRequests.find(q => q.id === id);
+      if (!quote) return;
+
+      document.getElementById('admin-quote-client').innerText = `${quote.lockerId} - ${quote.clientName || 'Cliente'}`;
+      document.getElementById('admin-quote-prod-name').innerText = quote.name;
+      document.getElementById('admin-quote-variant').innerText = quote.var || 'Estándar';
+      document.getElementById('admin-quote-qty').innerText = quote.qty || '1';
+      
+      const linkEl = document.getElementById('admin-quote-link');
+      if (quote.link && quote.link.startsWith('http')) {
+        linkEl.href = quote.link;
+        linkEl.innerText = quote.link;
+        linkEl.style.display = 'inline';
+      } else {
+        linkEl.style.display = 'none';
+      }
+
+      document.getElementById('admin-quote-price-input').value = quote.priceMXN || '';
+      document.getElementById('admin-quote-comment-input').value = quote.comment || '';
+
+      document.getElementById('modal-admin-quote').classList.add('open');
+    }
+
+    function closeAdminQuoteModal() {
+      document.getElementById('modal-admin-quote').classList.remove('open');
+    }
+
+    function saveAdminQuotePrice() {
+      const price = parseFloat(document.getElementById('admin-quote-price-input').value);
+      const comment = document.getElementById('admin-quote-comment-input').value.trim();
+
+      if (!price || price <= 0) {
+        alert("Por favor ingresa un precio válido.");
+        return;
+      }
+
+      const quote = database.quoteRequests.find(q => q.id === selectedQuoteId);
+      if (quote) {
+        quote.priceMXN = price;
+        quote.comment = comment;
+        quote.status = "Cotizado / Listo para pago";
+        alert("👑 Cotización procesada y enviada al cliente.");
+        closeAdminQuoteModal();
+        renderQuotesList();
+      }
+    }
+
+    function openPayQuoteModal(id) {
+      selectedQuoteId = id;
+      const quote = database.quoteRequests.find(q => q.id === id);
+      if (!quote) return;
+
+      document.getElementById('pay-quote-prod-name').innerText = quote.name;
+      document.getElementById('pay-quote-price').innerText = `$${quote.priceMXN.toLocaleString()} MXN`;
+      document.getElementById('pay-quote-comment').innerText = quote.comment ? `Nota Admin: "${quote.comment}"` : '';
+
+      uploadedProofDataUrl = null;
+      document.getElementById('quote-payment-file').value = '';
+      document.getElementById('preview-proof-box').style.display = 'none';
+      handleShippingOptionChange('correos');
+
+      document.getElementById('modal-pay-quote').classList.add('open');
+    }
+
+    function closePayQuoteModal() {
+      document.getElementById('modal-pay-quote').classList.remove('open');
+    }
+
+    function handleShippingOptionChange(val) {
+      if (val === 'correos') {
+        document.getElementById('section-correos-pay').style.display = 'block';
+        document.getElementById('section-privada-pay').style.display = 'none';
+      } else {
+        document.getElementById('section-correos-pay').style.display = 'none';
+        document.getElementById('section-privada-pay').style.display = 'block';
+      }
+    }
+
+    function handleProofImageUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          uploadedProofDataUrl = e.target.result;
+          document.getElementById('preview-proof-img').src = uploadedProofDataUrl;
+          document.getElementById('preview-proof-box').style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function submitQuotePaymentProof() {
+      if (!uploadedProofDataUrl) {
+        alert("Por favor sube una fotografía o archivo de tu comprobante de pago.");
+        return;
+      }
+
+      const quote = database.quoteRequests.find(q => q.id === selectedQuoteId);
+      if (quote) {
+        quote.status = "Pago por validar";
+        quote.shippingType = "Correos de México";
+        quote.proofUrl = uploadedProofDataUrl;
+
+        database.warehouseItems.unshift({
+          id: Date.now(),
+          lockerId: quote.lockerId,
+          name: quote.name,
+          weight: 100,
+          date: "Hoy",
+          status: "En Corea",
+          proofUrl: uploadedProofDataUrl
+        });
+
+        alert("🧾 Comprobante enviado con éxito. La administración validará tu pago pronto.");
+        closePayQuoteModal();
+        renderQuotesList();
+        renderAll();
+      }
+    }
+
+    function openWhatsAppQuoteContact() {
+      const quote = database.quoteRequests.find(q => q.id === selectedQuoteId);
+      const text = `Hola! Requiero coordinar el envío por paquetería privada de mi cotización: "${quote ? quote.name : ''}" (ID: ${selectedQuoteId}).`;
+      const url = `https://wa.me/5215512345678?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+
+    function openViewProofModal(url) {
+      if (!url) {
+        alert("No hay comprobante cargado.");
+        return;
+      }
+      document.getElementById('view-proof-img-display').src = url;
+      document.getElementById('modal-view-proof').classList.add('open');
+    }
+
+    function closeViewProofModal() {
+      document.getElementById('modal-view-proof').classList.remove('open');
+    }
+
+    function updateItemWarehouseStatus(itemId, newStatus) {
+      const item = database.warehouseItems.find(i => i.id === itemId);
+      if (item) {
+        item.status = newStatus;
+        alert(`Estatus actualizado a: ${newStatus}`);
+        renderAll();
+      }
+    }
+
+    function renderAdminTopUps() {
+      const container = document.getElementById('admin-topups-container');
+      if (database.pendingTopUps.length === 0) {
+        container.innerHTML = `<p style="font-size:11px; color:#888;">No hay recargas de saldo pendientes.</p>`;
+        return;
+      }
+
+      container.innerHTML = database.pendingTopUps.map(t => `
+        <div style="background:#FFF; border:1px solid var(--border-color); border-radius:12px; padding:10px; margin-bottom:8px; font-size:12px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <strong>${t.clientName} (${t.lockerId})</strong>
+            <p style="color:var(--dark-green); font-weight:bold;">$${t.amount} MXN · ${t.date}</p>
+          </div>
+          <div>
+            <button class="btn-primary" style="font-size:11px; padding:6px 10px; width:auto; background:var(--dark-green);" onclick="approveTopUp(${t.id})">Aprobar Saldo</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function approveTopUp(id) {
+      const topup = database.pendingTopUps.find(t => t.id === id);
+      if (topup) {
+        database.userBalance += topup.amount;
+        database.pendingTopUps = database.pendingTopUps.filter(t => t.id !== id);
+        alert(`👑 Saldo de $${topup.amount} MXN acreditado exitosamente.`);
+        renderAll();
+      }
+    }
+
+    function renderQuotesList() {
+      const container = document.getElementById('quotes-customer-list');
+      const isAdmin = currentRole === 'ADMIN';
+
+      if (database.quoteRequests.length === 0) {
+        container.innerHTML = `<p style="font-size:12px; color:#888;">No hay cotizaciones registradas.</p>`;
+        return;
+      }
+
+      container.innerHTML = database.quoteRequests.map(q => {
+        let actionBtn = '';
+        if (isAdmin) {
+          actionBtn = `<button class="btn-pill" style="font-size:11px;" onclick="openAdminQuoteModal(${q.id})">👑 Cotizar y Responder</button>`;
+          if (q.proofUrl) {
+            actionBtn += ` <button class="btn-pill" style="font-size:11px; background:#F8C3D2;" onclick="openViewProofModal('${q.proofUrl}')">🖼️ Comprobante</button>`;
+          }
+        } else {
+          if (q.status === 'Cotizado / Listo para pago') {
+            actionBtn = `<button class="btn-secondary" style="font-size:12px; margin-top:6px;" onclick="openPayQuoteModal(${q.id})">💳 Pagar $${q.priceMXN} MXN</button>`;
+          }
+        }
+
+        let badgeStyle = 'badge-pending';
+        if (q.status.includes('Listo')) badgeStyle = 'badge-approved';
+        if (q.status.includes('validar')) badgeStyle = 'badge-shipped';
+
+        return `
+          <div style="border:1px solid var(--border-color); border-radius:14px; padding:12px; margin-bottom:10px; background:#FFF;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <div>
+                <strong style="font-size:13px; color:var(--dark-green); display:block;">${q.name}</strong>
+                <span style="font-size:11px; color:#666;">Cliente: ${q.clientName || 'BH53'} · Cant: ${q.qty} · Var: ${q.var}</span>
+                ${q.priceMXN > 0 ? `<div style="font-weight:bold; color:var(--accent-pink); font-size:13px; margin-top:2px;">$${q.priceMXN} MXN</div>` : ''}
+              </div>
+              <span class="admin-badge ${badgeStyle}">${q.status}</span>
+            </div>
+            <div style="margin-top:8px;">${actionBtn}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* ================= RENDERIZADO ALMACÉN POR CATEGORÍAS ================= */
+    function renderWarehouseItems() {
+      const whList = document.getElementById('warehouse-item-list');
+      const filteredItems = database.warehouseItems;
+
+      document.getElementById('wh-count-all').innerText = filteredItems.length;
+      document.getElementById('wh-count-llegado').innerText = filteredItems.filter(i => i.status.includes('Llegado')).length;
+      document.getElementById('wh-count-camino').innerText = filteredItems.filter(i => i.status.includes('camino')).length;
+      document.getElementById('wh-count-corea').innerText = filteredItems.filter(i => i.status.includes('Corea')).length;
+
+      whList.innerHTML = filteredItems.map(i => `
+        <div style="border:1px solid var(--border-color); border-radius:14px; padding:10px; margin-bottom:8px; background:#FFF; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <strong style="font-size:13px; color:var(--dark-green);">${i.name}</strong>
+            <p style="font-size:10px; color:#777;">Recibido: ${i.date} · ${i.weight}g</p>
+            <span class="status-badge-pill badge-green-soft">${i.status}</span>
+          </div>
+          <input type="checkbox" class="wh-item-check" style="transform: scale(1.2);">
+        </div>
+      `).join('');
+    }
+
+    /* ================= GESTIÓN DE ENVÍOS ================= */
+
+    function filterShipmentsTab(tabKey) {
+      currentShipmentsTabFilter = tabKey;
+      document.getElementById('filter-all-btn').className = tabKey === 'all' ? 'filter-tab-pill active' : 'filter-tab-pill inactive';
+      document.getElementById('filter-sol-btn').className = tabKey === 'solicitudes' ? 'filter-tab-pill active' : 'filter-tab-pill inactive';
+      document.getElementById('filter-cajas-btn').className = tabKey === 'cajas' ? 'filter-tab-pill active' : 'filter-tab-pill inactive';
+      renderCapturedShipments();
+    }
+
+    function openSolicitaEnvioModal() { document.getElementById('modal-solicita-envio').classList.add('open'); }
+    function closeSolicitaEnvioModal() { document.getElementById('modal-solicita-envio').classList.remove('open'); }
+
+    function submitSolicitaEnvio(e) {
+      e.preventDefault();
+      const addr = document.getElementById('envio-form-address').value;
+      const phone = document.getElementById('envio-form-phone').value;
+      const notes = document.getElementById('envio-form-notes').value || 'Artículos de tu tienda favorita.';
+      const carrier = document.getElementById('envio-form-carrier').value;
+
+      database.capturedShipments.unshift({
+        id: Date.now(),
+        type: 'solicitud',
+        title: 'Solicitud de envío #' + Math.floor(Math.random()*899 + 100),
+        status: 'Solicitada',
+        badgeClass: 'badge-pink-soft',
+        notes: notes,
+        address: addr,
+        phone: phone,
+        carrier: carrier,
+        tracking: 'Pendiente',
+        client: 'Marisol Pinto (BH53)',
+        date: 'Hoy'
+      });
+
+      alert("✨ ¡Solicitud enviada! La Administradora asignará tu guía de rastreo.");
+      closeSolicitaEnvioModal();
+      renderCapturedShipments();
+    }
+
+    function openDetalleEnvioModal(id) {
+      selectedShipmentId = id;
+      const item = database.capturedShipments.find(s => s.id === id);
+      if (!item) return;
+
+      document.getElementById('detail-title').innerText = item.title;
+      document.getElementById('detail-address').innerText = item.address;
+      document.getElementById('detail-phone').innerText = 'Teléfono: ' + (item.phone || 'No registrado');
+      document.getElementById('detail-client').innerText = item.client || 'Marisol Pinto (BH53)';
+      document.getElementById('detail-notes').innerText = item.notes;
+      document.getElementById('detail-tracking').innerText = item.tracking || 'Pendiente de asignación';
+      document.getElementById('detail-carrier').innerText = 'Paquetería: ' + (item.carrier || 'Por asignar');
+      document.getElementById('detail-status-pill').innerText = item.status;
+      document.getElementById('detail-status-pill').className = 'status-badge-pill ' + (item.badgeClass || 'badge-dark-purple');
+      document.getElementById('detail-date').innerText = item.date;
+
+      if (item.carrier && item.carrier !== 'Por asignar') {
+        document.getElementById('admin-update-carrier').value = item.carrier;
+      }
+      document.getElementById('admin-update-tracking').value = item.tracking !== 'Pendiente' ? item.tracking : '';
+
+      document.getElementById('admin-shipping-controls').style.display = currentRole === 'ADMIN' ? 'block' : 'none';
+      document.getElementById('modal-detalle-envio').classList.add('open');
+    }
+
+    function closeDetalleEnvioModal() { document.getElementById('modal-detalle-envio').classList.remove('open'); }
+
+    function sendTrackingToClient() {
+      if (!selectedShipmentId) return;
+      const item = database.capturedShipments.find(s => s.id === selectedShipmentId);
+      const trackingInput = document.getElementById('admin-update-tracking').value.trim();
+      const carrierInput = document.getElementById('admin-update-carrier').value;
+
+      if (!trackingInput) {
+        alert("Por favor ingresa un número de guía o tracking antes de enviar.");
+        return;
+      }
+
+      if (item) {
+        item.tracking = trackingInput;
+        item.carrier = carrierInput;
+        item.status = 'En tránsito';
+        item.badgeClass = 'badge-dark-purple';
+
+        alert(`👑 ¡Guía enviada exitosamente a la clienta!\nPaquetería: ${carrierInput}\nGuía: ${trackingInput}`);
+        closeDetalleEnvioModal();
+        renderCapturedShipments();
+      }
+    }
+
+    function renderCapturedShipments() {
+      const container = document.getElementById('captured-shipments-container');
+      const isAdmin = currentRole === 'ADMIN';
+
+      document.getElementById('admin-mode-pill').style.display = isAdmin ? 'inline-block' : 'none';
+      document.getElementById('btn-solicita-envio-client').style.display = isAdmin ? 'none' : 'flex';
+      document.getElementById('shipment-filter-tabs-bar').style.display = isAdmin ? 'none' : 'flex';
+
+      let filtered = database.capturedShipments;
+
+      if (isAdmin) {
+        filtered = database.capturedShipments.filter(s => s.status === 'Solicitada' || s.type === 'solicitud');
+      } else {
+        if (currentShipmentsTabFilter === 'solicitudes') {
+          filtered = database.capturedShipments.filter(s => s.type === 'solicitud');
+        } else if (currentShipmentsTabFilter === 'cajas') {
+          filtered = database.capturedShipments.filter(s => s.type === 'caja');
+        }
+      }
+
+      document.getElementById('count-all').innerText = database.capturedShipments.length;
+      document.getElementById('count-sol').innerText = database.capturedShipments.filter(s => s.type === 'solicitud').length;
+      document.getElementById('count-cajas').innerText = database.capturedShipments.filter(s => s.type === 'caja').length;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<p style="font-size:12px; color:#888; text-align:center; padding:30px;">No hay solicitudes pendientes por procesar.</p>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(s => `
+        <div class="pink-card-item" onclick="openDetalleEnvioModal(${s.id})">
+          <div style="width:100%;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <strong style="font-size:15px; color:#2D2B3A; font-weight:700;">${s.title}</strong>
+              <span class="status-badge-pill ${s.badgeClass}">${s.status}</span>
+            </div>
+            <p style="font-size:12px; color:#37533E; font-weight:700; margin-top:2px;">📍 ${s.address}</p>
+            <span style="font-size:11px; color:#666; margin-top:2px; display:block;">👤 ${s.client} · ${s.date}</span>
+          </div>
+          <span style="color:#888; font-size:18px; margin-left:8px;">›</span>
+        </div>
+      `).join('');
+    }
+
+    /* ================= GENERAL UTILS & RENDER ================= */
+    function filterCapturedShipments() {
+      const val = document.getElementById('search-shipment-input').value.toLowerCase();
+      document.querySelectorAll('#captured-shipments-container .pink-card-item').forEach(el => {
+        el.style.display = el.innerText.toLowerCase().includes(val) ? 'flex' : 'none';
+      });
+    }
+
+    function openRinconcitoModal() { document.getElementById('modal-rinconcito').classList.add('open'); }
+    function closeRinconcitoModal() { document.getElementById('modal-rinconcito').classList.remove('open'); }
+    function openPaymentAccountsModal() { closeRinconcitoModal(); document.getElementById('modal-cuentas').classList.add('open'); }
+    function closePaymentAccountsModal() { document.getElementById('modal-cuentas').classList.remove('open'); }
+    function openAddressModal() { document.getElementById('modal-direccion').classList.add('open'); }
+    function closeAddressModal() { document.getElementById('modal-direccion').classList.remove('open'); }
+    function openTopUpModal() { document.getElementById('modal-recarga').classList.add('open'); }
+    function closeTopUpModal() { document.getElementById('modal-recarga').classList.remove('open'); }
+    function openProfileModal() { switchTab('mas'); }
+
+    function toggleAccordion(id) {
+      const el = document.getElementById(id);
+      el.style.display = el.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function showNotifToast() { alert("Notificaciones:\n1. Nueva solicitud recibida\n2. Cotización lista"); }
+    function toggleLang() { alert("Idioma cambiado a ES / EN"); }
+    function copyToClipboard(txt) { navigator.clipboard.writeText(txt); alert("Copiado al portapapeles: " + txt); }
+    function toggleLinkField(chk) { document.getElementById('group-link').style.display = chk.checked ? 'none' : 'block'; }
+    function copyAddressToClipboard() { navigator.clipboard.writeText(document.getElementById('detail-address').innerText); alert("📋 Dirección copiada."); }
+
+    function filterCategory(cat) {
+      currentCategoryFilter = cat;
+      document.querySelectorAll('.cat-filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      renderStockGrid();
+    }
+
+    function renderStockGrid() {
+      const grid = document.getElementById('stock-products-grid');
+      let items = database.products;
+      if (currentCategoryFilter !== 'All') items = items.filter(p => p.category === currentCategoryFilter);
+
+      grid.innerHTML = items.map(p => `
+        <div style="border:1px solid var(--border-color); border-radius:14px; padding:10px; background:#FFF; text-align:center;">
+          <div style="font-size:32px; margin-bottom:4px;">${p.img}</div>
+          <strong style="font-size:12px; display:block; color:var(--dark-green);">${p.name}</strong>
+          <span style="font-size:10px; color:#888;">${p.category} · Stock: ${p.stock}</span>
+          <div style="font-size:13px; font-weight:bold; color:var(--accent-pink); margin-top:4px;">$${p.price} MXN</div>
+          <button class="btn-pill" style="width:100%; margin-top:6px; font-size:11px;" onclick="alert('Pedido registrado de ${p.name}')">Comprar</button>
+        </div>
+      `).join('');
+    }
+
+    function selectAllWarehouse() { document.querySelectorAll('.wh-item-check').forEach(c => c.checked = true); }
+    function requestFullWarehouse() { alert("Artículos seleccionados."); switchTab('captured-shipments'); }
+    function processTransfer() {
+      const target = document.getElementById('traspaso-target').value.trim();
+      if (target) {
+        database.transferRequests.push({
+          id: Date.now(),
+          originLocker: 'BH53',
+          targetLocker: target,
+          itemName: 'Stray Kids Ate Photocard Felix',
+          status: 'Pendiente'
+        });
+        alert("🔄 Solicitud de traspaso enviada al Administrador para su aprobación.");
+        renderAll();
+      }
+    }
+    function requestShipmentFromSelection() { switchTab('captured-shipments'); }
+    function submitTopUpProof() {
+      const amt = parseFloat(document.getElementById('topup-amount').value) || 0;
+      if (amt > 0) {
+        database.pendingTopUps.unshift({ id: Date.now(), lockerId: 'BH53', clientName: 'Marisol Pinto', amount: amt, proofUrl: null, date: 'Hoy' });
+        alert("Comprobante enviado a revisión por el Administrador.");
+        closeTopUpModal();
+        renderAll();
+      }
+    }
+    function saveNewAddress() { alert("Dirección guardada."); closeAddressModal(); }
+
+    /* ================= RENDER GENERAL ================= */
+    function renderAll() {
+      const isAdmin = currentRole === 'ADMIN';
+
+      // Visibilidad Admin vs Clienta en Almacén
+      document.getElementById('client-warehouse-view').style.display = isAdmin ? 'none' : 'block';
+      document.getElementById('admin-warehouse-view').style.display = isAdmin ? 'block' : 'none';
+      document.getElementById('wh-page-title').innerText = isAdmin ? 'Panel Logístico de Almacén 👑' : 'Inventario & Artículos 📦';
+
+      // Visibilidad Tiendita & Saldos Admin
+      document.getElementById('admin-add-stock-btn').style.display = isAdmin ? 'inline-block' : 'none';
+      document.getElementById('admin-balance-requests-card').style.display = isAdmin ? 'block' : 'none';
+      document.getElementById('client-balance-card').style.display = isAdmin ? 'none' : 'block';
+      document.getElementById('client-quote-form-card').style.display = isAdmin ? 'none' : 'block';
+      document.getElementById('quotes-title-text').innerText = isAdmin ? '👑 Solicitudes de Cotización por Aprobar' : 'Mis Solicitudes y Cotizaciones';
+      document.getElementById('user-balance-text').innerText = `Mi saldo: $${database.userBalance.toLocaleString()} MXN`;
+
+      if (isAdmin) {
+        renderAdminExcelTable();
+        renderAdminTransfers();
+        renderAdminTopUps();
+      }
+
+      renderCapturedShipments();
+      renderStockGrid();
+      renderQuotesList();
+      renderWarehouseItems();
+
+      // Anuncios Inicio
+      const annList = document.getElementById('announcements-list');
+      annList.innerHTML = database.capturedAnnouncements.map(a => `
+        <div style="border-left:3px solid var(--pastel-green); padding-left:10px; margin-bottom:10px;">
+          <strong style="font-size:13px; color:var(--dark-green);">${a.title}</strong>
+          <p style="font-size:11px; color:#666;">${a.desc}</p>
+        </div>
+      `).join('');
+
+      // Direcciones
+      const addrList = document.getElementById('addresses-list');
+      addrList.innerHTML = database.addresses.map(a => `
+        <div style="border:1px dashed var(--border-color); border-radius:12px; padding:10px; margin-bottom:8px;">
+          <strong style="font-size:12px; color:var(--dark-green);">${a.name}</strong>
+          <p style="font-size:11px; color:#666;">${a.street}, ${a.col}</p>
+        </div>
+      `).join('');
+    }
+
+    window.onload = function() {
+      renderAll();
+    };
+  </script>
+</body>
+</html>
